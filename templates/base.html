@@ -1,0 +1,134 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <!-- Font Awesome -->
+  <link rel="stylesheet" href="{% static 'assets/css/all.css' %}">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+  <!-- Bootstrap -->
+  <link rel="stylesheet" href="{% static 'assets/css/bootstrap.css' %}">
+ 
+  <!-- Lightbox -->
+  <link rel="stylesheet" href="{% static 'assets/css/lightbox.min.css' %}" >
+  <!-- Custom -->
+  <link rel="stylesheet" href="{% static 'assets/css/style.css' %}">
+ 
+  <title>{% block head_title %}{% endblock %}</title>
+</head>
+<body>
+  <!-- Navbar -->
+  <nav class="navbar navbar-expand-lg navbar-light sticky-top">
+    <div class="container">
+      <a class="navbar-brand" href="{% url 'home' %}">
+        <img src="{% static 'assets/img/logo.jpg' %}" class="logo">
+      </a>
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+        <ul class="navbar-nav">
+            <li class="{% if request.resolver_match.url_name == 'home' %}active{% endif %} nav-item mr-3">
+              <a class="nav-link" href="{% url 'home' %}">Home</a>
+            </li>
+            <li class="{% if request.resolver_match.url_name == 'about' %}active {% endif %} nav-item mr-3">
+              <a class="nav-link" href="{% url 'about' %}">About</a>
+            </li>
+            <li class="{% if request.resolver_match.url_name == 'listings' %}active {% endif %} nav-item mr-3">
+              <a class="nav-link" href="{% url 'listings' %}">Featured Listings</a>
+            </li>
+        </ul>
+
+        <ul class="navbar-nav ml-auto">
+            {% if user.is_authenticated %}
+          <li class=" nav-item mr-3">
+            <a class="nav-link" href="{% url 'profile' %}">
+              <i class="fa fa-user" aria-hidden="true"></i> Profile</a>
+          </li>
+          <li class=" nav-item mr-3">
+            <a class="nav-link" href="{% url 'account_logout' %}">
+              <i class='fas fa-sign-out-alt'></i>
+
+              Logout</a>
+          </li>
+            {% else %}
+            <li class=" nav-item mr-3">
+            <a class="nav-link" href="{% url 'register' %}">
+              <i class="fas fa-user-plus"></i> Register</a>
+          </li>
+          <li class=" nav-item mr-3">
+            <a class="nav-link" href="{% url 'account_login' %}">
+              <i class="fas fa-sign-in-alt"></i>
+
+              Login</a>
+          </li>
+            {% endif %}
+        </ul>
+      </div>
+    </div>
+  </nav>
+
+  {% block content %}
+
+  {% endblock %}
+
+  <div class="site-footer">
+    <div class="container">
+      
+      <div class="row">
+        <div class="col-lg-4">
+          <div class="widget">
+            <h3>Contact</h3>
+            <address>43 Raymouth Rd. Baltemoer, London 3910</address>
+            <ul class="list-unstyled links">
+              <li><a href="tel://11234567890">+1(123)-456-7890</a></li>
+              <li><a href="tel://11234567890">+1(123)-456-7890</a></li>
+              <li><a href="mailto:info@mydomain.com">info@mydomain.com</a></li>
+            </ul>
+          </div> <!-- /.widget -->
+        </div> <!-- /.col-lg-4 -->
+        <div class="col-lg-4">
+          <div class="widget">
+            <h3>Sources</h3>
+            <ul class="list-unstyled float-start links">
+              <li><a href="#">About us</a></li>
+              <li><a href="#">Services</a></li>
+              <li><a href="#">Vision</a></li>
+              <li><a href="#">Mission</a></li>
+              <li><a href="#">Terms</a></li>
+              <li><a href="#">Privacy</a></li>
+            </ul>
+          </div> <!-- /.widget -->
+        </div> <!-- /.col-lg-4 -->
+        <div class="col-lg-4">
+          <div class="widget">
+            <h3>FOLLOW US</h3>
+            <p>Let us be social</p>
+  
+            <ul class="list-unstyled social">
+              <li><a href="#"><span class="fa fa-facebook fa-1x"></span></a></li>
+              <li><a href="#"><span class="fa fa-twitter fa-1x"></span></a></li>
+              <li><a href="#"><span class="fa fa-linkedin fa-1x"></span></a></li>
+              <li><a href="#"><span class="fa fa-instagram fa-1x"></span></a></li>
+            </ul>
+          </div> <!-- /.widget -->
+        </div> <!-- /.col-lg-4 -->
+      </div> <!-- /.row -->
+  
+      <div class="row mt-5">
+        <div class="col-12 text-center">
+            <p>Copyright &copy;<script>document.write(new Date().getFullYear());</script>. All Rights Reserved. &mdash; Designed with love by Esethu Jonas</p>
+          </div>
+        </div>
+      </div> <!-- /.container -->
+    </div> <!-- /.site-footer -->
+
+  <script src="{% static 'assets/js/jquery-3.3.1.min.js' %}"></script>
+  <script src="{% static 'assets/js/bootstrap.bundle.min.js' %}"></script>
+  <script src="{% static 'assets/js/lightbox.min.js' %}"></script>
+  <script src="{% static 'assets/js/main.js' %}"></script>
+</body>
+</html>
